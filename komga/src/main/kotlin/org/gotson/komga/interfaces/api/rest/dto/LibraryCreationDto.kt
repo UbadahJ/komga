@@ -1,6 +1,7 @@
 package org.gotson.komga.interfaces.api.rest.dto
 
 import jakarta.validation.constraints.NotBlank
+import java.util.Collections.emptySet
 
 data class LibraryCreationDto(
   @get:NotBlank val name: String,
@@ -26,6 +27,8 @@ data class LibraryCreationDto(
   val convertToCbz: Boolean = false,
   val emptyTrashAfterScan: Boolean = false,
   val seriesCover: SeriesCoverDto = SeriesCoverDto.FIRST,
+  val visibleOnKobo: Boolean = true,
+  val visibleOnOpds: Boolean = true,
   val hashFiles: Boolean = true,
   val hashPages: Boolean = false,
   val analyzeDimensions: Boolean = true,

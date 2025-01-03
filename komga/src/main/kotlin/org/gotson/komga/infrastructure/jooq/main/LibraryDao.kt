@@ -100,6 +100,8 @@ class LibraryDao(
       .set(l.CONVERT_TO_CBZ, library.convertToCbz)
       .set(l.EMPTY_TRASH_AFTER_SCAN, library.emptyTrashAfterScan)
       .set(l.SERIES_COVER, library.seriesCover.toString())
+      .set(l.VISIBLE_ON_KOBO, library.visibleOnKobo)
+      .set(l.VISIBLE_ON_OPDS, library.visibleOnOpds)
       .set(l.HASH_FILES, library.hashFiles)
       .set(l.HASH_PAGES, library.hashPages)
       .set(l.ANALYZE_DIMENSIONS, library.analyzeDimensions)
@@ -140,6 +142,8 @@ class LibraryDao(
       .set(l.HASH_PAGES, library.hashPages)
       .set(l.ANALYZE_DIMENSIONS, library.analyzeDimensions)
       .set(l.ONESHOTS_DIRECTORY, library.oneshotsDirectory)
+      .set(l.VISIBLE_ON_KOBO, library.visibleOnKobo)
+      .set(l.VISIBLE_ON_OPDS, library.visibleOnOpds)
       .set(l.UNAVAILABLE_DATE, library.unavailableDate)
       .set(l.LAST_MODIFIED_DATE, LocalDateTime.now(ZoneId.of("Z")))
       .where(l.ID.eq(library.id))
@@ -203,6 +207,8 @@ class LibraryDao(
       analyzeDimensions = analyzeDimensions,
       oneshotsDirectory = oneshotsDirectory,
       unavailableDate = unavailableDate,
+      visibleOnKobo = visibleOnKobo,
+      visibleOnOpds = visibleOnOpds,
       id = id,
       createdDate = createdDate.toCurrentTimeZone(),
       lastModifiedDate = lastModifiedDate.toCurrentTimeZone(),

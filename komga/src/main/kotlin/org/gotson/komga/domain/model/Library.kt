@@ -1,9 +1,11 @@
 package org.gotson.komga.domain.model
 
 import com.github.f4b6a3.tsid.TsidCreator
+import java.beans.Transient
 import java.net.URL
 import java.nio.file.Path
 import java.time.LocalDateTime
+import java.util.Collections.emptySet
 import kotlin.io.path.toPath
 
 data class Library(
@@ -30,6 +32,8 @@ data class Library(
   val convertToCbz: Boolean = false,
   val emptyTrashAfterScan: Boolean = false,
   val seriesCover: SeriesCover = SeriesCover.FIRST,
+  val visibleOnKobo: Boolean = true,
+  val visibleOnOpds: Boolean = true,
   val hashFiles: Boolean = true,
   val hashPages: Boolean = false,
   val analyzeDimensions: Boolean = true,
@@ -55,6 +59,6 @@ data class Library(
     WEEKLY,
   }
 
-  @delegate:Transient
+  @get:Transient
   val path: Path by lazy { this.root.toURI().toPath() }
 }

@@ -275,6 +275,25 @@
                       />
                     </v-col>
                   </v-row>
+                  <v-row>
+                    <v-col>
+                      <span class="text-subtitle-1 text--primary">{{
+                          $t('dialog.edit_library.label_visibility')
+                        }}</span>
+                      <v-checkbox
+                        v-model="form.visibleOnKobo"
+                        :label="$t('dialog.edit_library.label_visible_on_kobo')"
+                        hide-details
+                        class="mx-4"
+                      />
+                      <v-checkbox
+                        v-model="form.visibleOnOpds"
+                        :label="$t('dialog.edit_library.label_visible_on_opds')"
+                        hide-details
+                        class="mx-4"
+                      />
+                    </v-col>
+                  </v-row>
 
                 </v-container>
               </v-card>
@@ -463,6 +482,8 @@ export default Vue.extend({
         convertToCbz: false,
         emptyTrashAfterScan: false,
         seriesCover: SeriesCoverDto.FIRST as SeriesCoverDto,
+        visibleOnKobo: false,
+        visibleOnOpds: false,
         hashFiles: true,
         hashPages: false,
         analyzeDimensions: true,
@@ -622,6 +643,8 @@ export default Vue.extend({
       this.form.convertToCbz = library ? library.convertToCbz : false
       this.form.emptyTrashAfterScan = library ? library.emptyTrashAfterScan : false
       this.form.seriesCover = library ? library.seriesCover : SeriesCoverDto.FIRST
+      this.form.visibleOnKobo = library ? library.visibleOnKobo : false
+      this.form.visibleOnOpds = library ? library.visibleOnOpds : false
       this.form.hashFiles = library ? library.hashFiles : true
       this.form.hashPages = library ? library.hashPages : false
       this.form.analyzeDimensions = library ? library.analyzeDimensions : true
@@ -656,6 +679,8 @@ export default Vue.extend({
           convertToCbz: this.form.convertToCbz,
           emptyTrashAfterScan: this.form.emptyTrashAfterScan,
           seriesCover: this.form.seriesCover,
+          visibleOnKobo: this.form.visibleOnKobo,
+          visibleOnOpds: this.form.visibleOnOpds,
           hashFiles: this.form.hashFiles,
           hashPages: this.form.hashPages,
           analyzeDimensions: this.form.analyzeDimensions,

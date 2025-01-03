@@ -30,6 +30,7 @@ class SyncPointDao(
   private val dsl: DSLContext,
   private val bookCommonDao: BookCommonDao,
 ) : SyncPointRepository {
+  private val l = Tables.LIBRARY
   private val b = Tables.BOOK
   private val m = Tables.MEDIA
   private val d = Tables.BOOK_METADATA
@@ -42,6 +43,7 @@ class SyncPointDao(
   private val sprl = Tables.SYNC_POINT_READLIST
   private val sprlb = Tables.SYNC_POINT_READLIST_BOOK
   private val sprls = Tables.SYNC_POINT_READLIST_REMOVED_SYNCED
+
 
   @Transactional
   override fun create(
@@ -122,7 +124,10 @@ class SyncPointDao(
           .and(r.USER_ID.eq(context.userId))
           .leftJoin(bt)
           .on(b.ID.eq(bt.BOOK_ID))
+          .join(l)
+          .on(b.LIBRARY_ID.eq(l.ID))
           .and(bt.SELECTED.isTrue)
+          .and(l.VISIBLE_ON_KOBO.isTrue)
           .where(condition),
       ).execute()
 

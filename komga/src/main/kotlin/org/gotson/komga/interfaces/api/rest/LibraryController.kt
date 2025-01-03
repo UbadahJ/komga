@@ -42,6 +42,7 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
 import java.io.FileNotFoundException
+import java.util.Collections.emptySet
 
 @RestController
 @RequestMapping("api/v1/libraries", produces = [MediaType.APPLICATION_JSON_VALUE])
@@ -106,6 +107,8 @@ class LibraryController(
             convertToCbz = library.convertToCbz,
             emptyTrashAfterScan = library.emptyTrashAfterScan,
             seriesCover = library.seriesCover.toDomain(),
+            visibleOnKobo = library.visibleOnKobo,
+            visibleOnOpds = library.visibleOnOpds,
             hashFiles = library.hashFiles,
             hashPages = library.hashPages,
             analyzeDimensions = library.analyzeDimensions,
@@ -175,6 +178,8 @@ class LibraryController(
             convertToCbz = convertToCbz ?: existing.convertToCbz,
             emptyTrashAfterScan = emptyTrashAfterScan ?: existing.emptyTrashAfterScan,
             seriesCover = seriesCover?.toDomain() ?: existing.seriesCover,
+            visibleOnKobo = visibleOnKobo ?: existing.visibleOnKobo,
+            visibleOnOpds = visibleOnOpds ?: existing.visibleOnOpds,
             hashFiles = hashFiles ?: existing.hashFiles,
             hashPages = hashPages ?: existing.hashPages,
             analyzeDimensions = analyzeDimensions ?: existing.analyzeDimensions,
