@@ -159,8 +159,8 @@ jreleaser {
 
   packagers {
     docker {
-      active = Active.RELEASE
-      continueOnError = true
+      active = Active.ALWAYS
+      continueOnError = false
       templateDirectory = rootDir.resolve("komga/docker")
       repository.active = Active.NEVER
       buildArgs = listOf("--cache-from", "gotson/komga:latest")
@@ -171,18 +171,10 @@ jreleaser {
           "komga:{{projectVersionMajor}}.x",
         )
       registries {
-        create("docker.io") { externalLogin = true }
-        create("ghcr.io") { externalLogin = true }
-      }
-      buildx {
-        enabled = true
-        createBuilder = false
-        platforms =
-          listOf(
-            "linux/amd64",
-            "linux/arm/v7",
-            "linux/arm64/v8",
-          )
+        create("ghcr.io") {
+          repositoryName = "ubadahj"
+          externalLogin = true
+        }
       }
     }
   }
